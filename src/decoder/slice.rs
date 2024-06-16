@@ -788,7 +788,7 @@ fn decode_slice_header(
 /// Defined in Section 8.2.2. Handles Slice Groups
 fn next_mb_addr(curr_mb_addr: usize, pic_size_in_mbs: usize, sgm: &Vec<u32>) -> usize {
     let mut next_addr = curr_mb_addr + 1;
-    while next_addr < pic_size_in_mbs && sgm[next_addr] != sgm[curr_mb_addr] {
+    while next_addr < pic_size_in_mbs && next_addr < sgm.len() && sgm[next_addr] != sgm[curr_mb_addr] {
         next_addr += 1;
     }
     next_addr
